@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/zachmilo/reactnews#readme",
   "dependencies": {
+    "bulma": "^0.4.3",
     "express": "^4.15.3",
     "mongoose": "^4.11.1",
     "react": "^15.6.1",
