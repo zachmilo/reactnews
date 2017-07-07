@@ -4,11 +4,11 @@ bodyParser = require("body-parser");
 
 let path = require("path");
 let app = express();
-
 const PORT = process.env.PORT || 8081;
 
 let mongoose = require("mongoose");
 mongoose.Promise = Promise;
+
 let db = require("./mongoConfig");
 db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
