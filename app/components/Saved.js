@@ -1,46 +1,26 @@
 import React from "react";
 
+import QueryItem from "./QueryItem";
+
 export default class Saved extends React.Component {
-  constructor() {
+    constructor() {
     super();
     this.savedData = this.savedData.bind(this);
+    this.state = {
+      historyLoaded:[]
+    };
+    this.savedData();
   }
   savedData() {
     axios.get("/gethistory")
     .then(function (response) {
-      console.log(response);
-      let historySave = response.map(function(result){
-        <div className="card">
-          <header className="card-header">
-            <p className="card-header-title">
-              {result.title}
-            </p>
-            <a className="card-header-icon">
-              <span className="icon">
-                <i className="fa fa-angle-down"></i>
-              </span>
-            </a>
-          </header>
-          <div className="card-content">
-            <div className="content">
-              {result.synopsis}
-              <br/>
-              <small>{result.date}</small>
-            </div>
-          </div>
-          <footer className="card-footer">
-            <a className="card-footer-item">Save</a>
-          </footer>
-        </div>
-      })
-      return historySave;
-    })
+      this.setState({historyLoaded:response.data});
+    }.bind(this))
     .catch(function (error) {
       console.log(error);
       return "";
     });
   }
-
   render() {
     return (
     <div className="columns">
@@ -49,9 +29,14 @@ export default class Saved extends React.Component {
           {this.props.headerName}
         </p>
         <div className="panel-block">
-        </div>
+        {
+          this.state.historyLoaded.map(function(doc,index) {
+            return <QueryItem key={index} buttonEvent="remove" articleId={doc.articleId} newsLink={doc.url} abstract={doc.title} snippet={doc.synopsis} articleDate={doc.date} icon="fa fa-trash-o" />
+          })
+        }
+      </div>
     </nav>
   </div>
-    );
+  );
   }
 }

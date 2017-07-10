@@ -1,3 +1,12 @@
 .button.is-success.is-hovered {
   margin-left: 45%;
 }
+
+.scrollIt {
+  height: 500px;
+  overflow: scroll;
+}
+
+body {
+  overflow-x: initial;
+}

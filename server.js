@@ -1,10 +1,9 @@
 const express = require("express"),
-exphbs  = require("express-handlebars"),
 bodyParser = require("body-parser");
 
 let path = require("path");
 let app = express();
-const PORT = process.env.PORT || 8081;
+const PORT = process.env.PORT || 8080;
 
 let mongoose = require("mongoose");
 mongoose.Promise = Promise;
@@ -14,6 +13,8 @@ db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
   console.log("We are connected");
+  let queries = require("./routes/routes");
+  app.use(queries);
 });
 
 

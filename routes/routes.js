@@ -1,5 +1,5 @@
-import express from "express";
-import Article from "../models/article";
+const express = require("express");
+const Article = require("../models/article");
 
 let router = express.Router();
 
@@ -17,10 +17,27 @@ router.get("/gethistory",function(req,res) {
 
 router.post("/savearticle",function(req,res) {
   let title = req.body.title;
+  let snippet = req.body.snippet;
   let date = req.body.date;
   let url = req.body.url;
+  let articleId = req.body.articleId;
+  console.log(req.body);
 
-  Article.addArticle({title: title, date: date, url:url})
+  Article.addArticle({title: title, synopsis:snippet, date: date, url:url, articleId:articleId})
+  .then(function(){
+    res.status(200)
+    .send("OK");
+  })
+  .catch(function(error){
+    res.status(500)
+    .send(error)
+  });
+});
+router.post("/removearticle",function(req,res) {
+  let articleId = req.body.articleId;
+  console.log(articleId);
+
+  Article.removeArticle({articleId:articleId})
   .then(function(){
     res.status(200)
     .send("OK");
