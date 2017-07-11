@@ -15,7 +15,8 @@ export default class QueryItem extends React.Component {
         url: this.props.newsLink,
         articleId:this.props.articleId
       })
-      .then(function(sucessful){
+      .then(function(sucessful) {
+        
       })
       .catch(function(error){
       });
