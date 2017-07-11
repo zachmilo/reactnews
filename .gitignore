@@ -43,4 +43,7 @@ node_modules/*
 # ApiKeys #
 ##########
 apiKey.js
+
+# Mongo #
+########
 mongoConfig.js
