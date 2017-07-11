@@ -33,6 +33,7 @@ router.post("/savearticle",function(req,res) {
     .send(error)
   });
 });
+
 router.post("/removearticle",function(req,res) {
   let articleId = req.body.articleId;
   console.log(articleId);
@@ -48,6 +49,10 @@ router.post("/removearticle",function(req,res) {
   });
 });
 
+router.get("/getkey",function(req,res) {
+  res.status(200)
+  .send(process.env.NYT);
+});
 
 
 

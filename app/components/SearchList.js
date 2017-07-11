@@ -1,7 +1,5 @@
 import React from "react";
 
-import api from "../../apiKey";
-
 import Result from "./Result";
 
 export default class SearchList extends React.Component {
@@ -11,10 +9,23 @@ export default class SearchList extends React.Component {
       topic: "",
       beginDate: "",
       endDate:"",
+      keyApi:"",
       queryList:[]
     }
+    this.getApi = this.getApi.bind(this);
     this.searchNyt = this.searchNyt.bind(this);
     this.changeField = this.changeField.bind(this);
+    getApi();
+  }
+  getApi() {
+    axios.get("/getkey", {
+    })
+    .then(function(result){
+      this.setState({keyApi:result});
+    })
+    .catch(function(){
+
+    });
   }
   searchNyt() {
     let topic = this.state.topic;
@@ -45,6 +56,7 @@ export default class SearchList extends React.Component {
       return "";
     });
   }
+
   changeField(event) {
     let key = event.target.id;
     this.setState({[key]: event.target.value});
