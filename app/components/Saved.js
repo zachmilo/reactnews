@@ -6,11 +6,23 @@ export default class Saved extends React.Component {
     constructor() {
     super();
     this.savedData = this.savedData.bind(this);
+    this.removeArticle = this.removeArticle.bind(this);
     this.state = {
       historyLoaded:[]
     };
     this.savedData();
   }
+
+  removeArticle() {
+    axios.post("/removearticle", {
+        articleId:this.props.articleId
+      })
+      .then(function(sucessful){
+      })
+      .catch(function(error){
+      });
+  }
+
   savedData() {
     axios.get("/gethistory")
     .then(function (response) {
@@ -29,8 +41,8 @@ export default class Saved extends React.Component {
         </p>
         <div className={this.state.historyLoaded.length > 0 ? "scrollIt": ""}>
         {
-          this.state.historyLoaded.map(function(doc,index) {
-            return <QueryItem key={index} buttonEvent="remove" articleId={doc.articleId} newsLink={doc.url} abstract={doc.title} snippet={doc.synopsis} articleDate={doc.date} icon="fa fa-trash-o" />
+          this.state.historyLoaded.map((doc,index) => {
+            return <QueryItem key={index} buttonEvent={this.removeArticle} articleId={doc.articleId} newsLink={doc.url} abstract={doc.title} snippet={doc.synopsis} articleDate={doc.date} icon="fa fa-trash-o" />
           })
         }
       </div>

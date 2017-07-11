@@ -17,6 +17,7 @@ export default class SearchList extends React.Component {
     this.changeField = this.changeField.bind(this);
     this.getApi();
   }
+
   getApi() {
     axios.get("/getkey", {
     })
@@ -27,6 +28,7 @@ export default class SearchList extends React.Component {
 
     });
   }
+  
   searchNyt() {
     let topic = this.state.topic;
     let beginDate = this.state.beginDate;
