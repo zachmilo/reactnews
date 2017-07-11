@@ -28,7 +28,7 @@ export default class Saved extends React.Component {
         <p className="panel-heading has-text-centered">
           {this.props.headerName}
         </p>
-        <div className="panel-block">
+        <div className={this.state.historyLoaded.length > 0 ? "scrollIt": ""}>
         {
           this.state.historyLoaded.map(function(doc,index) {
             return <QueryItem key={index} buttonEvent="remove" articleId={doc.articleId} newsLink={doc.url} abstract={doc.title} snippet={doc.synopsis} articleDate={doc.date} icon="fa fa-trash-o" />
