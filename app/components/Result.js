@@ -1,6 +1,7 @@
 import React from "react";
 
 import QueryItem from "./QueryItem";
+import Saved from "./Saved";
 
 export default class Result extends React.Component {
   constructor(props){
