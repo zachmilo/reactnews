@@ -8,6 +8,7 @@ export default class Result extends React.Component {
   }
   render() {
     return (
+    <div>
     <div className="columns">
     <div className="column">
       <nav className="panel column is-8 is-offset-2">
@@ -26,6 +27,8 @@ export default class Result extends React.Component {
     </nav>
   </div>
   </div>
+  <Saved headerName="Saved" />
+</div>
     );
   }
 }
