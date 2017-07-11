@@ -1,7 +1,15 @@
+const webpack = require('webpack');
+
 module.exports = {
 
   // This is the entry point or start of our react applicaton
   entry: "./app/app.js",
+
+  plugins:[
+    new webpack.DefinePlugin({
+      'process.env.NODE_ENV': JSON.stringify('production')
+    })
+  ],
 
   // The plain compiled JavaScript will be output into this file
   output: {
