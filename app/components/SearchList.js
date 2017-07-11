@@ -21,7 +21,6 @@ export default class SearchList extends React.Component {
     axios.get("/getkey", {
     })
     .then(function(result) {
-      console.log(result.data);
       this.setState({keyApi:result.data});
     }.bind(this))
     .catch(function(){
@@ -33,7 +32,6 @@ export default class SearchList extends React.Component {
     let beginDate = this.state.beginDate;
     let endDate = this.state.endDate;
     let api = this.state.keyApi;
-    console.log(this.state.keyApi+"testing it uppppppppp");
     let params = {"api-key":api, q:topic};
 
     if(!topic) {

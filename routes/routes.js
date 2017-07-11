@@ -21,7 +21,6 @@ router.post("/savearticle",function(req,res) {
   let date = req.body.date;
   let url = req.body.url;
   let articleId = req.body.articleId;
-  console.log(req.body);
 
   Article.addArticle({title: title, synopsis:snippet, date: date, url:url, articleId:articleId})
   .then(function(){
@@ -36,8 +35,7 @@ router.post("/savearticle",function(req,res) {
 
 router.post("/removearticle",function(req,res) {
   let articleId = req.body.articleId;
-  console.log(articleId);
-
+  
   Article.removeArticle({articleId:articleId})
   .then(function(){
     res.status(200)

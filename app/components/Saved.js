@@ -17,7 +17,6 @@ export default class Saved extends React.Component {
       this.setState({historyLoaded:response.data});
     }.bind(this))
     .catch(function (error) {
-      console.log(error);
       return "";
     });
   }

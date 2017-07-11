@@ -18,7 +18,6 @@ export default class Result extends React.Component {
         {
           this.props.resultsFound.map(function(doc,index) {
             let header = doc.abstract;
-            console.log(doc);
             let formDate = doc.pub_date.split("T")[0];
             return <QueryItem key={index} buttonEvent="save" articleId={doc._id} newsLink={doc.web_url} abstract={doc.headline.main} snippet={doc.snippet} articleDate={formDate} icon="fa fa-floppy-o" />
           })
