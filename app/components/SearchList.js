@@ -31,6 +31,7 @@ export default class SearchList extends React.Component {
     let topic = this.state.topic;
     let beginDate = this.state.beginDate;
     let endDate = this.state.endDate;
+    console.log(this.state.keyApi);
     let params = {"api-key":this.state.keyApi, q:topic};
 
     if(!topic) {
