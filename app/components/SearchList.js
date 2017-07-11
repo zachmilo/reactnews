@@ -15,7 +15,7 @@ export default class SearchList extends React.Component {
     this.getApi = this.getApi.bind(this);
     this.searchNyt = this.searchNyt.bind(this);
     this.changeField = this.changeField.bind(this);
-    getApi();
+    this.getApi();
   }
   getApi() {
     axios.get("/getkey", {
