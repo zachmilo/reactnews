@@ -21,8 +21,7 @@ export default class SearchList extends React.Component {
     axios.get("/getkey", {
     })
     .then(function(result) {
-      console.log(result);
-      this.setState({keyApi:result});
+      this.setState({keyApi:result.data});
     })
     .catch(function(){
 
