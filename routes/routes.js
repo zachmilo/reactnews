@@ -21,6 +21,7 @@ router.post("/savearticle",function(req,res) {
   let date = req.body.date;
   let url = req.body.url;
   let articleId = req.body.articleId;
+  console.log(req.body);
 
   Article.addArticle({title: title, synopsis:snippet, date: date, url:url, articleId:articleId})
   .then(function(){
@@ -35,7 +36,7 @@ router.post("/savearticle",function(req,res) {
 
 router.post("/removearticle",function(req,res) {
   let articleId = req.body.articleId;
-  
+
   Article.removeArticle({articleId:articleId})
   .then(function(){
     res.status(200)
@@ -49,7 +50,8 @@ router.post("/removearticle",function(req,res) {
 
 router.get("/getkey",function(req,res) {
   res.status(200)
-  .send(process.env.NYT);
+  // .send(process.env.NYT);
+  .send("746af9a2fde74e209e90ecaa5005b7a9");
 });
 
 

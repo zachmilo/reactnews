@@ -16,5 +16,4 @@ ReactDOM.render(
     <Header primaryTitle="New York Times" primarySub="NewsPaper"   />
     <SearchList headerName="Search" />
   </div>
-
   , document.getElementById("app"));

@@ -8,18 +8,31 @@ export default class Saved extends React.Component {
     this.savedData = this.savedData.bind(this);
     this.removeArticle = this.removeArticle.bind(this);
     this.state = {
-      historyLoaded:[]
+      historyLoaded:[],
+      deleteItem:0
     };
     this.savedData();
   }
 
-  removeArticle() {
+
+  removeArticle(itemClicked) {
     axios.post("/removearticle", {
-        articleId:this.props.articleId
+        articleId:itemClicked.articleId
       })
-      .then(function(sucessful){
-      })
-      .catch(function(error){
+      .then(function(sucessful) {
+        let cloneLoaded = this.state.historyLoaded;
+        for(let index in cloneLoaded) {
+          if(itemClicked.articleId === cloneLoaded[index].articleId) {
+            console.log(index);
+            cloneLoaded.splice(index,1);
+            console.log(cloneLoaded);
+            this.setState({historyLoaded:cloneLoaded});
+            return;
+          }
+        }
+      }.bind(this))
+      .catch(function(error) {
+        console.log(error);
       });
   }
 
@@ -32,6 +45,12 @@ export default class Saved extends React.Component {
       return "";
     });
   }
+  componentWillReceiveProps(nextProps) {
+    if (Object.keys(nextProps.itemSaved).length > 0) {
+      this.savedData()
+    }
+  }
+
   render() {
     return (
     <div className="columns">

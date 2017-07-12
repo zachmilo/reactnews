@@ -6,21 +6,26 @@ import Saved from "./Saved";
 export default class Result extends React.Component {
   constructor(props){
     super(props);
+    this.state = {
+      savedItem:{}
+    }
     this.saveArticle = this.saveArticle.bind(this);
   }
 
-  saveArticle() {
+  saveArticle(itemClicked) {
+    console.log(itemClicked);
     axios.post("/savearticle", {
-        title: this.props.abstract,
-        snippet:this.props.snippet,
-        date: this.props.articleDate,
-        url: this.props.newsLink,
-        articleId:this.props.articleId
+        title: itemClicked.title,
+        snippet:itemClicked.snippet,
+        date: itemClicked.date,
+        url: itemClicked.url,
+        articleId:itemClicked.articleId
       })
-      .then(function(sucessful) {
-
-      })
-      .catch(function(error){
+      .then(function(results) {
+        this.setState({savedItem:itemClicked});
+      }.bind(this))
+      .catch(function(error) {
+        console.log(error);
       });
   }
 
@@ -36,6 +41,7 @@ export default class Result extends React.Component {
         <div className={this.props.resultsFound.length > 0 ? "scrollIt": ""}>
         {
           this.props.resultsFound.map((doc,index) => {
+
             let header = doc.abstract;
             let formDate = doc.pub_date.split("T")[0];
             return <QueryItem key={index} buttonEvent={this.saveArticle} articleId={doc._id} newsLink={doc.web_url} abstract={doc.headline.main} snippet={doc.snippet} articleDate={formDate} icon="fa fa-floppy-o" />
@@ -45,7 +51,7 @@ export default class Result extends React.Component {
     </nav>
   </div>
   </div>
-  <Saved headerName="Saved" />
+  <Saved headerName="Saved" itemSaved={this.state.savedItem} />
 </div>
     );
   }
