@@ -23,9 +23,7 @@ export default class Saved extends React.Component {
         let cloneLoaded = this.state.historyLoaded;
         for(let index in cloneLoaded) {
           if(itemClicked.articleId === cloneLoaded[index].articleId) {
-            console.log(index);
             cloneLoaded.splice(index,1);
-            console.log(cloneLoaded);
             this.setState({historyLoaded:cloneLoaded});
             return;
           }
