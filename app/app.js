@@ -13,7 +13,7 @@ import Saved from "./components/Saved";
 // This code here allows us to render our main component (in this case Parent)
 ReactDOM.render(
   <div>
-    <Header primaryTitle="New York Times" primarySub="NewsPaper"   />
+    <Header primaryTitle="New York Times" primarySub="NewsPaper"   /> 
     <SearchList headerName="Search" />
   </div>
   , document.getElementById("app"));
